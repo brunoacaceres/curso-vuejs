@@ -16,7 +16,7 @@ const resolvers = {
         console.log('User:', user)
         return user
       })*/
-      // Utilizando Prisma Bindind
+      // Utilizando Prisma Bindind - Utilizando os mesmos filtros para consulta no banco utilizados no GraphQL original
       return binding.query.user({where: { id: args.id }}, info)
       .then(user => {
         console.log('User:', user)
