@@ -1,5 +1,7 @@
 type Query {
-  user(id: ID!): User
+  # user(id: ID!): User
+  # Permitindo consulta apenas com token
+  user: User
 }
 
 type Mutation {
