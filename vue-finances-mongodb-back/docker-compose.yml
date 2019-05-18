@@ -5,9 +5,11 @@ services:
     build: .
     ports: 
       - "4000:4000"
-    command: npm start
+    command: npm run dev
     environment:
       PRISMA_ENDPOINT: http://prisma:4466
+    volumes:
+      - .:/usr/app
     
   prisma:
     image: prismagraphql/prisma:1.33
