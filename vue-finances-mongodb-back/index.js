@@ -1,16 +1,18 @@
+const { GraphQLServer } = require('graphql-yoga')
 const { prisma } = require('./generated/prisma-client')
 
-async function main() {
-  await prisma.createUser({
-    name: 'Bruno A. Caceres',
-    email: 'bruno@email.com',
-    password: '123456'
-  })
+const resolvers = {
+  Query: {
+    user(parent, args, context, info){
+      return prisma.user({ id: args.id })
+    }
 
-  const users = await prisma.users()
-
-  console.log('Users: ', users)
+  }
 }
 
-main().catch(e=> console.error(e))
+const server = new GraphQLServer({
+  typeDefs: './schema.graphql',
+  resolvers
+})
 
+server.start().then(() => console.log('Server runnning on http://localhost:4000'))
