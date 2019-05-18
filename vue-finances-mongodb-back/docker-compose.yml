@@ -1,5 +1,14 @@
 version: '3'
 services:
+
+  api:
+    build: .
+    ports: 
+      - "4000:4000"
+    command: npm start
+    environment:
+      PRISMA_ENDPOINT: http://prisma:4466
+    
   prisma:
     image: prismagraphql/prisma:1.33
     restart: unless-stopped
@@ -14,6 +23,7 @@ services:
           default:
             connector: mongo
             uri: 'mongodb://prisma:prisma@mongo'
+
   mongo:
     image: mongo:3.6
     restart: unless-stopped
@@ -27,5 +37,6 @@ services:
       - "27017:27017"
     volumes:
       - mongo:/var/lib/mongo
+
 volumes:
   mongo:
