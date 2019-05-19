@@ -4,4 +4,10 @@ databaseType: document
 
 generate:
   - generator: javascript-client
-    output: ./../src/generated/prisma-client/
+    output: ./../src/generated/prisma-client
+  - generator: graphql-schema
+    output: ./../src/generated/graphql-schema/schema.graphql
+
+hooks:
+  post-deploy:
+    - prisma generate
