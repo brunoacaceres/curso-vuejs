@@ -7,13 +7,14 @@ const resolvers = require('./resolvers')
 const server = new GraphQLServer({
   typeDefs: `${__dirname}/schema.graphql`,
   resolvers,
-  context: {
-    db: new Binding.Prisma({
-      typeDefs: `${__dirname}/generated/graphql-schema/schema.graphql`,
-      endpoint: process.env.PRISMA_ENDPOINT
-    }),
-    prisma
-  }
+  context: request => ({
+      ...request,
+      db: new Binding.Prisma({
+        typeDefs: `${__dirname}/generated/graphql-schema/schema.graphql`,
+        endpoint: process.env.PRISMA_ENDPOINT
+      }),
+      prisma
+  })
 })
 
 server.start().then(() => console.log('Server runnning on http://localhost:4000'))
