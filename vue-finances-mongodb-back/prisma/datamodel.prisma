@@ -1,12 +1,12 @@
 type User {
-  id: ID! @id
+  id: ID! @id @unique
   name: String!
   email: String! @unique
   password: String! 
 }
 
 type Account {
-  id: ID! @id
+  id: ID! @id @unique
   user: User @relation(link: INLINE)
   description: String!
 }
@@ -17,14 +17,14 @@ enum Operation {
 }
 
 type Category {
-  id: ID! @id
+  id: ID! @id @unique
   user: User @relation(link: INLINE)
   description: String!
   operation: Operation!
 }
 
 type Record {
-  id: ID! @id
+  id: ID! @id @unique
   user: User! @relation(link: INLINE)
   account: Account! @relation(link: INLINE)
   category: Category! @relation(link: INLINE)
