@@ -1,4 +1,4 @@
-const { getUserId }  = require('./../../utils')
+const { getUserId }  = require('../utils')
 
 //function user (parent, args, context, info){
 function user (_, args, ctx, info){
