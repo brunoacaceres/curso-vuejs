@@ -1,4 +1,5 @@
 type Query {
+  accounts: [ Account! ] !
   # user(id: ID!): User
   # Permitindo consulta apenas com token
   user: User
